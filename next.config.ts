@@ -1,9 +1,13 @@
 import type { NextConfig } from "next";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+/** Directory that contains this config file (always PitchLock), not `process.cwd()` when the shell opens a parent folder. */
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
-  /** Pin Turbopack to this app so a `package-lock.json` in a parent folder (e.g. user home) is not used as the root. */
   turbopack: {
-    root: process.cwd(),
+    root: projectRoot,
   },
 };
 
